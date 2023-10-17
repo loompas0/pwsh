@@ -1,4 +1,4 @@
-# This script uses an entrey parameter file
+# This script uses an entry parameter file
 
 param (
     $Path
