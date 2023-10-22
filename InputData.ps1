@@ -6,7 +6,8 @@
 
 # Read-Host can be used to enter a value from the keyboard to a variable
 
-[int]$NbDays  = Read-Host -Prompt "How many days " 
+[int]$NbDays  = Read-Host -Prompt "How many days " -ErrorAction break
+
 $NbDays.GetType()
 $NbDays
 # if you want to enter a variable without the format above
@@ -35,3 +36,16 @@ $Password = $Credential.Password
 $ClearPassword = ConvertFrom-SecureString -SecureString $Password -AsPlainText
 Write-Host "The User name is $UserName " -ForegroundColor Green
 Write-Host " The Password is  $ClearPassword   " -ForegroundColor Magenta
+
+
+# Now lets select a value from menu
+# The Out-GridView cmdlet is primarily used for reviewing data.
+#  However, you can also use Out-GridView to create a simple menu selection interface. 
+#  When the user makes one or more selections in the window presented by Out-GridView, 
+#  the data from these objects is either passed down the pipeline or placed in a variable
+$users =  ("Pierre", "Paul", "Jacques")
+Write-Host " List of user $users"
+
+ $Selection = $users | Out-GridView -OutputMode Single -Title "Please selecet a  single User"
+ Write-Host " You selected the user $Selection , well done " -ForegroundColor cyan
+
